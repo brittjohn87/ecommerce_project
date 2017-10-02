@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
 
   # GET /products
   # GET /products.json
@@ -63,6 +63,14 @@ class ProductsController < ApplicationController
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def all_users
+    @users = User.all
+  end
+
+  def edit_users
+    @users = User.all
   end
 
   private
