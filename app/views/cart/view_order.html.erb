@@ -1,13 +1,43 @@
 <h2> Here is your cart:</h2>
 
-<div>
+<div class="panel panel-success">
+	<div class="panel-header">
+		<div class="panel-body">
+			<div class="well">
+<table class="table">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Price</th>
+			<th>Quantity</th>
+			<th>Subtotal</th>
+
+<tbody>
   <% @line_items.each do |line_item| %>
-    <li><%= line_item.product.name %></li>
-    <li><%= number_to_currency line_item.product.price %></li>
-    <li>Qty: <%= line_item.quantity %></li>
-    <li>Subtotal: <%= number_to_currency line_item.line_item_total %></li>
+  <tr>
+    <td><%= line_item.product.name %></td>
+    <td><%= number_to_currency line_item.product.price %></td>
+    <td>Qty: <%= line_item.quantity %></td>
+    <td>Subtotal: <%= number_to_currency line_item.line_item_total %></td>
+    <%= form_tag edit_line_item_path do %>
+	        <%= hidden_field_tag :order_id, line_item.order_id %>
+	        <%= hidden_field_tag :product_id, line_item.product_id %>
+	        <td><%= number_field_tag :quantity, nil, min: 0, max: line_item.product.quantity, class: "form-control" %></td>
+	        <td><%= submit_tag "Edit Quantity", class: "btn btn-primary" %></td>
+	       <% end %> 
+	        <td><%= link_to "Delete From Cart", delete_line_item_path(product_id: line_item.product_id, order_id: line_item.order_id), class: "btn btn-danger" %></td>
   <% end %>
+	</tr>
+</tbody>
+</table>
+			</div>
+		</div>
+	</div>
 </div>
+
+
+<br />
+<br />
 
 <div>
   <%= link_to "Proceed to Checkout?", checkout_path, class: "btn btn-success" %>

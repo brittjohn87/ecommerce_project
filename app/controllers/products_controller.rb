@@ -65,13 +65,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  def all_users
-    @users = User.all
-  end
 
-  def edit_users
-    @users = User.all
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

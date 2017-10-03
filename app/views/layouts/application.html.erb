@@ -21,8 +21,8 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <ul class="nav navbar-nav navbar-right">
-<!-- Added the All Categories List -->
+          <ul class="nav navbar-nav navbar-left">
+            <!-- Added the All Categories List -->
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -45,10 +45,18 @@
              <!-- End of Brands List -->
              <!-- View Cart Option -->
               <ul class="nav navbar-nav navbar-right">
-              <li><%= link_to "View Cart", view_order_path %></li>
-              </ul>
-             <!-- End of View Cart Option -->
+
+              <% if @line_items == 0 %>
+                <li><%=link_to "View Cart", view_order_path, class: "fa fa-cart-plus" %></li>
+
+              <% else %>
+
+                <li><%= link_to "View Cart", view_order_path, class: "fa fa-shopping-cart" %></li>
+              <% end %>
+              
+          
           <% if user_signed_in? %>
+            <li><%= link_to "All Users", all_users_path %></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 Signed In As: <%= current_user.email %><span class="caret"></span></a>
@@ -56,12 +64,13 @@
               <li><%= link_to "Backroom", products_path %></li>
               <li><%=link_to "Edit Profile", edit_user_registration_path %></li>
               <% if can? :update, Product%>
-              <li><%= link_to "All Users", all_users_path %></li>
+              
               <% end %>
               <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
               </ul>
               <% else %>
               <li><%= link_to "Sign In", new_user_session_path %></li>
+              </ul>
             </li>
           </ul>
         </ul>

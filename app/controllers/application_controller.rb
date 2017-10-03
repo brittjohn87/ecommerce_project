@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :categories
   before_action :brands
+  before_action :line_items
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 	def configure_permitted_parameters
@@ -15,6 +16,10 @@ class ApplicationController < ActionController::Base
   end
 
   def brands
-  @brands = Product.pluck(:brand).sort.uniq
+    @brands = Product.pluck(:brand).sort.uniq
 	end
+
+  def line_items
+    @line_items = 0
+  end
 end

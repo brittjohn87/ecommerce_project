@@ -3,11 +3,18 @@ class CartController < ApplicationController
 	before_action :authenticate_user!, except: [:add_to_cart, :view_order]
 
   def add_to_cart
+
+    if params[:quantity].to_i == 0
+    flash[:notice] = "Please enter a valid quantity to add to cart!"
+    redirect_back(fallback_location: root_path)
+
+    else
   	line_item = LineItem.create(product_id: params[:product_id], quantity: params[:quantity])
 
   	line_item.update(line_item_total: (line_item.quantity * line_item.product.price))
 
   	redirect_back(fallback_location: root_path)
+  end
   end
 
   def view_order
@@ -30,4 +37,23 @@ class CartController < ApplicationController
 
   	line_items.destroy_all
   end
+
+    def edit_line_item
+    
+    line_item = LineItem.find_by(product_id: params[:product_id].to_i)
+    line_item.update(quantity: params[:quantity].to_i)
+    line_item.update(line_item_total: line_item.quantity * line_item.product.price)
+
+    redirect_back(fallback_location: view_order) 
+
+  end 
+
+
+  def delete_line_item
+    line_item = LineItem.where(product_id: params[:product_id].to_i).first
+
+    line_item.destroy
+    redirect_back(fallback_location: view_order) 
+
+  end 
 end

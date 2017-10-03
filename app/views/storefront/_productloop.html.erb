@@ -35,13 +35,15 @@
          	Purchase now before everybody and they mama snags one!
         </p></center>
         <!-- Purchasing option/button -->
-        <center><p>
-          <%= form_tag add_to_cart_path do %>
-          <%= hidden_field_tag :product_id, product.id %>
-          <%= number_field_tag :quantity, nil, min: 0, max: product.quantity %>
-          <%= submit_tag "Add to Cart", class: "btn btn-success" %>
-          <% end %>
-        </p></center>
+          <center>
+            <p>
+              <%= form_tag add_to_cart_path do %>
+              <%= hidden_field_tag :product_id, product.id %>
+              <%= number_field_tag :quantity, nil, min: 1, max: product.quantity %>
+              <%= submit_tag "Add to Cart", class: "btn btn-success" %>
+              <% end %>
+            </p>
+          </center>
         <!-- Button End -->
       </div>
     </div>

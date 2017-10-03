@@ -1,0 +1,16 @@
+<h1>Profile for <%= @user.email %>:</h1>
+
+<%= @user.email %>
+<%= @user.role %>
+
+
+<br />
+
+<% if can? :manage, User %>
+
+<%= form_tag edit_user_path do %>
+			<%= select_tag(:role, options_for_select([ "admin", "guest" ]), :prompt => "Please select") %>
+			  <%= hidden_field_tag :id, @user.id %>
+			  <%= submit_tag "Update Role", class: "btn btn-warning" %>
+<% end %>
+<% end %>

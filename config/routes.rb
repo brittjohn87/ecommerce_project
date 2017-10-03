@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'show_user' => 'admin#show_user'
+
+  post 'edit_user' => 'admin#edit_user'
+  
+  get 'all_users' => 'admin#all_users'
+  
   post 'add_to_cart' => 'cart#add_to_cart'
 
   get 'view_order' => 'cart#view_order'
@@ -11,9 +17,14 @@ Rails.application.routes.draw do
 
   get 'branding' => 'storefront#items_by_brand'
 
-  get 'all_users' => 'products#all_users'
+  post 'delete_line_item' => 'cart#delete_line_item'
+  
+  get 'delete_line_item' => 'cart#delete_line_item'
 
-  get 'edit_user' => 'products#edit_user'
+  get 'edit_line_item' => 'cart#edit_line_item'
+
+  post 'edit_line_item' => 'cart#edit_line_item'
+  
 
 
   devise_for :users

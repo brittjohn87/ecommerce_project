@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
 
     if user.admin?
-        can :manage, Product
+        can :manage, :all
     end
 
     if user.guest?
