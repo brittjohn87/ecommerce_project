@@ -20,6 +20,6 @@ class ApplicationController < ActionController::Base
 	end
 
   def line_items
-    @line_items = 0
+    @line_items = LineItem.all
   end
 end

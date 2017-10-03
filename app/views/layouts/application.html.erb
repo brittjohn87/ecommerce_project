@@ -47,7 +47,7 @@
               <ul class="nav navbar-nav navbar-right">
 
               <% if @line_items == 0 %>
-                <li><%=link_to "View Cart", view_order_path, class: "fa fa-cart-plus" %></li>
+                <li><%=link_to "View Cart", view_order_path, class: "fa fa-cart-plus", id: "cart-font" %></li>
 
               <% else %>
 
@@ -61,7 +61,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 Signed In As: <%= current_user.email %><span class="caret"></span></a>
               <ul class="dropdown-menu">
-              <li><%= link_to "Backroom", products_path %></li>
+              <li><%= link_to "Inventory", products_path %></li>
               <li><%=link_to "Edit Profile", edit_user_registration_path %></li>
               <% if can? :update, Product%>
               

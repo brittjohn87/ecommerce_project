@@ -15,7 +15,6 @@
 	<tr>
 		<td><%= u.email %></td>
 		<td><%= u.role.upcase %></td>
-		<td><%= u.id %></td>
 		<td><%= link_to "Select User", show_user_path(id: u.id), class: "btn btn-warning" %></td>
 <% end %>
 	</tr>
