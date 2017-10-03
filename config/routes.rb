@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   get 'edit_line_item' => 'cart#edit_line_item'
 
   post 'edit_line_item' => 'cart#edit_line_item'
+
+  post 'order_complete' => 'cart#order_complete'
   
 
 
